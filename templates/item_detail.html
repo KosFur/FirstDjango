@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ item.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ item.name }}</h1>
+    <p>Бренд: {{ item.brand }}</p>
+
+    {% if item.count > 0 %}
+        <p>Количество на складе: {{ item.count }}</p>
+    {% else %}
+        <p style="color: red;">Товара нет на складе</p>
+    {% endif %}
+
+    <h3>Доступные цвета:</h3>
+    <ul>
+        {% for color in item.colors.all %}
+            <li>
+                <span style="display:inline-block; width:15px; height:15px; background-color: {{ color.color_code }};"></span>
+                {{ color.name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
